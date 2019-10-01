@@ -1,0 +1,2 @@
+[INFO]: Starting the GameSceneManager in file: C:\Development\C++\ComponentFramework1.0.4\ComponentFramework1.0.4\ComponentFramework\Main.cpp on line: 14
+[INFO]: OpenGL version: 4.5.0 - Build 25.20.100.6577 in file: C:\Development\C++\ComponentFramework1.0.4\ComponentFramework1.0.4\ComponentFramework\Window.cpp on line: 41
