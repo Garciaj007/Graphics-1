@@ -23,9 +23,11 @@ public:
 	inline GLuint getTextureID() const { return textureID; }
 	inline Shader* getShader() const { return skyboxShader; }
 	inline void setProjectionMatrix(Matrix4 proj) { projectionMatrix = proj; }
+	inline void setViewMatrix(Matrix4 view) { viewMatrix = view; }
 private:
 	GLuint textureID;
 	Mesh* cubeMap;
 	Shader* skyboxShader;
 	Matrix4 projectionMatrix;
+	Matrix4 viewMatrix;
 };

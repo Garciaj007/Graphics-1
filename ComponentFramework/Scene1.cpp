@@ -85,6 +85,9 @@ void Scene1::Render() const {
 	/// Clear the screen
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
+	//Drawing Skybox
+	skybox->Render();
 
 	/// Draw your scene here
 	GLuint program = earthGameObjectPtr->getShader()->getProgram();
@@ -95,8 +98,6 @@ void Scene1::Render() const {
 	glUniformMatrix4fv(earthGameObjectPtr->getShader()->getUniformID("viewMatrix"), 1, GL_FALSE, camera->getViewMatrix());
 	glUniform3fv(earthGameObjectPtr->getShader()->getUniformID("lightPos"), 1, light);
 
-
-	//skybox->Render();
 	earthGameObjectPtr->Render();
 	moonGameObjectPtr->Render();
 

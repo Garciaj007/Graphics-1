@@ -70,10 +70,11 @@ void Skybox::OnDestroy()
 
 void Skybox::Render() const
 {
+
 	glDepthMask(GL_FALSE);
 
-	Matrix4 modelMatrix = MMath::scale(10.f, 10.f, 10.f);
-	glUniformMatrix4fv(skyboxShader->getUniformID("modelMatrix"), 1, GL_FALSE, modelMatrix);
+	glUseProgram(skyboxShader->getProgram());
+	glUniformMatrix4fv(skyboxShader->getUniformID("viewMatrix"), 1, GL_FALSE, viewMatrix);
 	glUniformMatrix4fv(skyboxShader->getUniformID("projectionMatrix"), 1, GL_FALSE, projectionMatrix);
 
 	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
