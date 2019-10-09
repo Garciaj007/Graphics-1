@@ -6,12 +6,7 @@
 #include "Shader.h"
 #include "MMath.h"
 
-
-
-Skybox::Skybox()
-{
-	OnCreate();
-}
+Skybox::Skybox() { }
 
 Skybox::~Skybox()
 {
@@ -29,14 +24,11 @@ bool Skybox::OnCreate()
 	glGenTextures(1, &textureID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 
-	LoadTextures({ 
-	"right.tga",
-	"left.tga" ,
-	"top.tga" ,
-	"bottom.tga" ,
-	"front.tga" ,
-	"back.tga" 
-	});
+	if (!LoadTextures({ "right.png", "left.png", "top.png", "bottom.png", "front.png", "back.png"})) 
+	{
+		Debug::FatalError("Couldn't load cubemap textures", __FILE__, __LINE__);
+		return false;
+	}
 
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
@@ -48,6 +40,8 @@ bool Skybox::OnCreate()
 	skyboxShader = new Shader("skyboxVert.glsl", "skyboxFrag.glsl");
 
 	if (!skyboxShader) return false;
+
+	return true;
 }
 
 bool Skybox::LoadTextures(std::vector<std::string> paths)
@@ -56,7 +50,7 @@ bool Skybox::LoadTextures(std::vector<std::string> paths)
 		auto data = IMG_Load(paths[i].c_str());
 		if (data) {
 			int mode = (data->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
-			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, mode, data->w, data->h, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, mode, data->w, data->h, 0, mode, GL_UNSIGNED_BYTE, data->pixels);
 			SDL_FreeSurface(data);
 		}
 		else {

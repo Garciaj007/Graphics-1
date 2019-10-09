@@ -12,6 +12,7 @@ class GameObject;
 class Mesh;
 class Shader;
 class Texture;
+class Skybox;
 
 class Scene1 : public Scene {
 private:
@@ -26,6 +27,7 @@ private:
 	Shader* shaderPtr;
 	Texture* earthTexturePtr;
 	Texture* moonTexturePtr;
+	Skybox* skybox;
 public:
 	explicit Scene1();
 	virtual ~Scene1();

@@ -11,6 +11,11 @@ bool Window::OnCreate(std::string name_, int width_, int height_) {
 		Debug::FatalError("Failed to initialize SDL", __FILE__, __LINE__);
 		return false;
 	}
+
+	if (IMG_Init(IMG_INIT_TIF | IMG_INIT_PNG) < 0) {
+		Debug::FatalError("Failed to initialize SDL_IMG", __FILE__, __LINE__);
+		return false;
+	}
 	
 	this->width = width_;
 	this->height = height_;

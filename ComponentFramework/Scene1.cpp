@@ -5,6 +5,7 @@
 #include "Debug.h"
 #include "Scene1.h"
 #include "Camera.h"
+#include "Skybox.h"
 #include "GameObject.h"
 #include "ObjLoader.h"
 #include "Mesh.h"
@@ -13,12 +14,16 @@
 #include "MMath.h"
 #include <SDL_image.h>
 
-Scene1::Scene1():camera(nullptr), earthGameObjectPtr(nullptr), meshPtr(nullptr),shaderPtr(nullptr), earthTexturePtr(nullptr) {}
+Scene1::Scene1():camera(nullptr), earthGameObjectPtr(nullptr), meshPtr(nullptr) ,shaderPtr(nullptr), earthTexturePtr(nullptr), skybox(nullptr), cubemapID(0), moonTexturePtr(nullptr), moonGameObjectPtr(nullptr)  {}
 
 Scene1::~Scene1() {}
 
 bool Scene1::OnCreate() {
 	camera = new Camera();
+
+	skybox = new Skybox();
+	skybox->setProjectionMatrix(camera->getProjectionMatrix());
+	if (!skybox->OnCreate()) return false;
 
 	if (ObjLoader::loadOBJ("sphere.obj") == false)
 		return false;
@@ -60,6 +65,7 @@ void Scene1::OnDestroy() {
 	if (shaderPtr) delete shaderPtr, shaderPtr = nullptr;
 	if (earthGameObjectPtr) delete earthGameObjectPtr, earthGameObjectPtr = nullptr;
 	if (moonGameObjectPtr) delete moonGameObjectPtr, moonGameObjectPtr = nullptr;
+	if (skybox) delete skybox, skybox = nullptr;
 }
 
 void Scene1::HandleEvents(const SDL_Event &sdlEvent) {}
@@ -89,6 +95,8 @@ void Scene1::Render() const {
 	glUniformMatrix4fv(earthGameObjectPtr->getShader()->getUniformID("viewMatrix"), 1, GL_FALSE, camera->getViewMatrix());
 	glUniform3fv(earthGameObjectPtr->getShader()->getUniformID("lightPos"), 1, light);
 
+
+	//skybox->Render();
 	earthGameObjectPtr->Render();
 	moonGameObjectPtr->Render();
 

@@ -5,7 +5,6 @@
 using namespace MATH;
 class Camera {
 private:
-	class Skybox* skyboxPtr;
 	Matrix4 projection;
 	Matrix4 view;
 	Matrix4 rotation, translation;
