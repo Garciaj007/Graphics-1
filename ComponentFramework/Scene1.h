@@ -28,6 +28,8 @@ private:
 	Texture* earthTexturePtr;
 	Texture* moonTexturePtr;
 	Skybox* skybox;
+
+	float angle = 0.0f;
 public:
 	explicit Scene1();
 	virtual ~Scene1();

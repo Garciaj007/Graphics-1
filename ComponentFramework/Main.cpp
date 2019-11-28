@@ -20,5 +20,4 @@ int main(int argc, char* args[]) {
 	
 	_CrtDumpMemoryLeaks();
 	exit(0);
-
 }

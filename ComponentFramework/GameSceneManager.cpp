@@ -6,6 +6,9 @@
 #include "Scene1.h"
 #include "Scene2.h"
 
+int GameSceneManager::width = 0;
+int GameSceneManager::height = 0;
+
 GameSceneManager::GameSceneManager(): 
 	currentScene(nullptr), window(nullptr), timer(nullptr),
 	fps(60), isRunning(false) {}
@@ -33,6 +36,8 @@ GameSceneManager::~GameSceneManager() {
 bool GameSceneManager::Init(std::string name_, int width_, int height_) {
 
 	window = new Window();
+	width = width_;
+	height = height_;
 	if (!window->OnCreate(name_, width_, height_)) {
 		Debug::FatalError("Failed to initialize Window object", __FILE__, __LINE__);
 		return false;

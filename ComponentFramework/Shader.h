@@ -14,7 +14,8 @@ public:
 	~Shader();
 
 	inline GLuint getProgram() const { return shaderID;}
-	inline GLuint getUniformID(std::string name) { return uniformMap[name]; }
+	inline void useShader() const { glUseProgram(shaderID); }
+	inline GLuint getUniformID(const std::string name) { return uniformMap[name]; }
 
 private:	
 	std::unordered_map<std::string, unsigned int> uniformMap;

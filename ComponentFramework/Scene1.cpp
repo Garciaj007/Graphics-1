@@ -75,31 +75,33 @@ void Scene1::HandleEvents(const SDL_Event &sdlEvent) {}
 void Scene1::Update(const float deltaTime_) {
 	static float rotation = 0.0f;
 	static float orbitSpeed = 0.0f;
+	angle += 10.0f;
 	earthGameObjectPtr->Update(deltaTime_);
 	moonGameObjectPtr->Update(deltaTime_);
-	rotation += 1.5f;
+	rotation += 0.5f;
 	orbitSpeed += 0.05f;
 	earthGameObjectPtr->setModelMatrix(MMath::scale(2.0f, 2.0f, 2.0f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(-90, Vec3(1, 0, 0)));
-	moonGameObjectPtr->setModelMatrix(MMath::translate(4 * sinf(DEGREES_TO_RADIANS * orbitSpeed), 0.0f, 4 * cosf(DEGREES_TO_RADIANS * orbitSpeed)) * MMath::scale(0.5f, 0.5f, 0.5f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(90, Vec3(1, 0, 0)));
+	moonGameObjectPtr->setModelMatrix(MMath::translate(4 * sinf(static_cast<float>(DEGREES_TO_RADIANS) * orbitSpeed), 0.0f, 4 * cosf(static_cast<float>(DEGREES_TO_RADIANS) * orbitSpeed)) * MMath::scale(0.5f, 0.5f, 0.5f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(90, Vec3(1, 0, 0)));
 }
 
 void Scene1::Render() const {
 	/// Clear the screen
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	auto viewMatrix = camera->getViewMatrix() * MMath::rotate(static_cast<float>(DEGREES_TO_RADIANS) * angle, Vec3(0.f, 1.f, 0.f));
 	
 	//Drawing Skybox
+	skybox->setViewMatrix(viewMatrix);
 	skybox->Render();
 
 	/// Draw your scene here
-	GLuint program = earthGameObjectPtr->getShader()->getProgram();
-	glUseProgram(program);
+	earthGameObjectPtr->getShader()->useShader();
 
-	/// These pass the matricies and the light position to the GPU
+	/// These pass the matrices and the light position to the GPU
 	glUniformMatrix4fv(earthGameObjectPtr->getShader()->getUniformID("projectionMatrix"), 1, GL_FALSE, camera->getProjectionMatrix());
-	glUniformMatrix4fv(earthGameObjectPtr->getShader()->getUniformID("viewMatrix"), 1, GL_FALSE, camera->getViewMatrix());
+	glUniformMatrix4fv(earthGameObjectPtr->getShader()->getUniformID("viewMatrix"), 1, GL_FALSE, viewMatrix);
 	glUniform3fv(earthGameObjectPtr->getShader()->getUniformID("lightPos"), 1, light);
-
 	earthGameObjectPtr->Render();
 	moonGameObjectPtr->Render();
 

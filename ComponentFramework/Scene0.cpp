@@ -67,14 +67,13 @@ void Scene0::Render() const {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	/// Draw your scene here
-	GLuint program = gameObject->getShader()->getProgram();
-	glUseProgram(program);
+	gameObject->getShader()->useShader();
 
-	/// These pass the matricies and the light position to the GPU
+	/// These pass the matrices and the light position to the GPU
 	glUniformMatrix4fv(gameObject->getShader()->getUniformID("projectionMatrix"), 1, GL_FALSE, camera->getProjectionMatrix());
 	glUniformMatrix4fv(gameObject->getShader()->getUniformID("viewMatrix"), 1, GL_FALSE, camera->getViewMatrix());
-	for (int lightIndex = 0; lightIndex < lightSources.size(); lightIndex++) {
-		std::string lightName = "lightPos" + std::to_string(lightIndex);
+	for (uint32_t lightIndex = 0; lightIndex < lightSources.size(); lightIndex++) {
+		auto lightName = "lightPos" + std::to_string(lightIndex);
 		glUniform3fv(gameObject->getShader()->getUniformID(lightName.c_str()), 1, lightSources[lightIndex]);
 	}
 

@@ -1,15 +1,15 @@
 #version 410
-out vec4 FragColor;
+out vec4 fragColor;
 
-in vec3 Normal;
-in vec3 Position;
+in vec3 normal;
+in vec3 position;
 
 uniform vec3 cameraPos;
 uniform samplerCube skybox;
 
 void main () 
 {
-	vec3 incidence = normalize(Position - cameraPos);
-	vec3 reflection = reflect(incidence, normalize(Normal));
-	FragColor = vec4(texture(skybox, reflection).rgb, 1.0);
+	vec3 I = normalize(position - cameraPos);
+	vec3 R = reflect(I, normalize(normal));
+	fragColor = vec4(texture(skybox, R).rgb, 1.0);
 }

@@ -21,13 +21,22 @@ private:
 	Matrix4 rotationMatrix;
 
 	Camera* camera = nullptr;
-	GameObject* modelGameObjectPtr = nullptr;
-	Mesh* meshPtr = nullptr;
-	Shader* shaderPtr = nullptr;
+	GameObject* cubeGOPtr = nullptr;
+	GameObject* sphereGOPtr = nullptr;
+	Mesh* cubeMeshPtr = nullptr;
+	Mesh* sphereMeshPtr = nullptr;
+	Shader* reflectionShaderPtr = nullptr;
+	Shader* refractionShaderPtr = nullptr;
 	Skybox* skybox = nullptr;
+
+	Vec2 input = {0.f, 0.f};
+	Vec2 previous = {0.f, 0.f};
+	Vec2 current = {0.f, 0.f};
+	Vec2 offset = {0.f, 0.f};
+	bool firstGather = true;
 public:
-	explicit Scene2();
-	virtual ~Scene2();
+	Scene2() = default;
+	virtual ~Scene2() = default;
 
 	virtual bool OnCreate() override;
 	virtual void OnDestroy() override;

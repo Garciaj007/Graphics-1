@@ -12,7 +12,7 @@ using namespace MATH;
 class Skybox 
 {
 public:
-	Skybox();
+	Skybox() = default;
 	~Skybox();
 
 	bool OnCreate();
@@ -20,12 +20,12 @@ public:
 	void OnDestroy();
 	void Render()const;
 
-	inline GLuint getTextureID() const { return textureID; }
-	inline Shader* getShader() const { return skyboxShader; }
-	inline void setProjectionMatrix(Matrix4 proj) { projectionMatrix = proj; }
-	inline void setViewMatrix(Matrix4 view) { viewMatrix = view; }
+	GLuint getTextureID() const { return cubemapTextureId; }
+	Shader* getShader() const { return skyboxShader; }
+	void setProjectionMatrix(const Matrix4 proj) { projectionMatrix = proj; }
+	void setViewMatrix(const Matrix4 view) { viewMatrix = view; }
 private:
-	GLuint textureID;
+	GLuint cubemapTextureId;
 	Mesh* cubeMap;
 	Shader* skyboxShader;
 	Matrix4 projectionMatrix;

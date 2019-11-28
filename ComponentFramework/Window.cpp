@@ -12,7 +12,7 @@ bool Window::OnCreate(std::string name_, int width_, int height_) {
 		return false;
 	}
 
-	if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+	if (!(IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG) & IMG_INIT_PNG | IMG_INIT_JPG )) {
 		Debug::FatalError("Failed to initialize SDL_IMG:" + std::string(IMG_GetError()), __FILE__, __LINE__);
 		return false;
 	}
@@ -29,6 +29,7 @@ bool Window::OnCreate(std::string name_, int width_, int height_) {
 		Debug::FatalError("Failed to create a window", __FILE__, __LINE__);
 		return false;
 	}
+	SDL_WarpMouseInWindow(window, width / 2, height / 2);
 	context = SDL_GL_CreateContext(window);
 	int major, minor;
 	GetInstalledOpenGLInfo(&major,&minor);

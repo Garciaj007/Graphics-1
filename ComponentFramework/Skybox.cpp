@@ -4,9 +4,6 @@
 #include "ObjLoader.h"
 #include "Mesh.h"
 #include "Shader.h"
-#include "MMath.h"
-
-Skybox::Skybox() { }
 
 Skybox::~Skybox()
 {
@@ -18,13 +15,12 @@ bool Skybox::OnCreate()
 	if (!ObjLoader::loadOBJ("cube.obj")) return false;
 
 	cubeMap = new Mesh(GL_TRIANGLES, ObjLoader::vertices, ObjLoader::normals, ObjLoader::uvCoords);
-
 	if (!cubeMap) return false;
 
-	glGenTextures(1, &textureID);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+	glGenTextures(1, &cubemapTextureId);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTextureId);
 
-	if (!LoadTextures({ "right.png", "left.png", "top.png", "bottom.png", "front.png", "back.png"})) 
+	if (!LoadTextures({ "posx.jpg", "negx.jpg", "posy.jpg", "negy.jpg", "posz.jpg", "negz.jpg"})) 
 	{
 		Debug::FatalError("Couldn't load cubemap textures", __FILE__, __LINE__);
 		return false;
@@ -46,10 +42,10 @@ bool Skybox::OnCreate()
 
 bool Skybox::LoadTextures(std::vector<std::string> paths)
 {
-	for (auto i = 0; i < paths.size(); i++) {
-		auto data = IMG_Load(paths[i].c_str());
+	for (auto i = 0; i < static_cast<int>(paths.size()); i++) {
+		const auto data = IMG_Load(paths[i].c_str());
 		if (data) {
-			int mode = (data->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
+			const auto mode = (data->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
 			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, mode, data->w, data->h, 0, mode, GL_UNSIGNED_BYTE, data->pixels);
 			SDL_FreeSurface(data);
 		}
@@ -71,14 +67,15 @@ void Skybox::OnDestroy()
 void Skybox::Render() const
 {
 	glDepthMask(GL_FALSE);
-
-	glUseProgram(skyboxShader->getProgram());
+	
+	skyboxShader->useShader();
 	glUniformMatrix4fv(skyboxShader->getUniformID("viewMatrix"), 1, GL_FALSE, viewMatrix);
 	glUniformMatrix4fv(skyboxShader->getUniformID("projectionMatrix"), 1, GL_FALSE, projectionMatrix);
 
-	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTextureId);
 	
 	cubeMap->Render();
 	
-	glDepthMask(GL_TRUE);
+	glDepthMask(GL_TRUE); 
 }

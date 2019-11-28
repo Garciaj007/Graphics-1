@@ -11,6 +11,7 @@ public:
 	bool Init(std::string name_, int width_, int height_);
 	void HandleEvents();
 	
+	static int width, height;
 	
 private:
 	enum SCENE_NUMBER {

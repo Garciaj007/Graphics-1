@@ -1,8 +1,8 @@
 
 #include "shader.h"
 #include <fstream>
-#include <string.h>
-#include <stdarg.h>
+#include <cstring>
+#include <cstdarg>
 
 
 /// Vertex and Fragment Shader filenames,
