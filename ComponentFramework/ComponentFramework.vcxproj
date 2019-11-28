@@ -133,6 +133,7 @@
     <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="Scene0.cpp" />
     <ClCompile Include="Scene1.cpp" />
+    <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene0.h" />
     <ClInclude Include="Scene1.h" />
+    <ClInclude Include="Scene2.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Sphere.h" />
@@ -167,6 +169,10 @@
     <None Include="blinn_phongVert.glsl" />
     <None Include="phongFrag.glsl" />
     <None Include="phongVert.glsl" />
+    <None Include="reflectionFrag.glsl" />
+    <None Include="reflectionVert.glsl" />
+    <None Include="refractionFrag.glsl" />
+    <None Include="refractionVert.glsl" />
     <None Include="skyboxFrag.glsl" />
     <None Include="skyboxVert.glsl" />
     <None Include="textureFrag.glsl" />

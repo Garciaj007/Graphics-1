@@ -70,7 +70,6 @@ void Skybox::OnDestroy()
 
 void Skybox::Render() const
 {
-
 	glDepthMask(GL_FALSE);
 
 	glUseProgram(skyboxShader->getProgram());

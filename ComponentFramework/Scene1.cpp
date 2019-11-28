@@ -23,6 +23,7 @@ bool Scene1::OnCreate() {
 
 	skybox = new Skybox();
 	skybox->setProjectionMatrix(camera->getProjectionMatrix());
+	skybox->setViewMatrix(camera->getViewMatrix());
 	if (!skybox->OnCreate()) return false;
 
 	if (ObjLoader::loadOBJ("sphere.obj") == false)
@@ -62,6 +63,7 @@ void Scene1::OnDestroy() {
 	if (camera) delete camera, camera = nullptr;
 	if (meshPtr) delete meshPtr, meshPtr = nullptr;
 	if (earthTexturePtr) delete earthTexturePtr, earthTexturePtr = nullptr;
+	if (moonTexturePtr) delete moonTexturePtr, moonTexturePtr = nullptr;
 	if (shaderPtr) delete shaderPtr, shaderPtr = nullptr;
 	if (earthGameObjectPtr) delete earthGameObjectPtr, earthGameObjectPtr = nullptr;
 	if (moonGameObjectPtr) delete moonGameObjectPtr, moonGameObjectPtr = nullptr;

@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Scene0.h"
 #include "Scene1.h"
+#include "Scene2.h"
 
 GameSceneManager::GameSceneManager(): 
 	currentScene(nullptr), window(nullptr), timer(nullptr),
@@ -43,7 +44,7 @@ bool GameSceneManager::Init(std::string name_, int width_, int height_) {
 		return false;
 	}
 	
-	currentScene = BuildScene(SCENE1);
+	currentScene = BuildScene(SCENE2);
 	if (currentScene == nullptr) {
 		Debug::FatalError("Failed to initialize Opening Scene", __FILE__, __LINE__);
 		return false;
@@ -89,6 +90,10 @@ Scene* GameSceneManager::BuildScene(SCENE_NUMBER scene_) {
 		break;
 	case SCENE1:
 		newScene = new Scene1();
+		status = newScene->OnCreate();
+		break;
+	case SCENE2:
+		newScene = new Scene2();
 		status = newScene->OnCreate();
 		break;
 	default:

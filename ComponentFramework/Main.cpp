@@ -16,7 +16,7 @@ int main(int argc, char* args[]) {
 	if (gsm->Init(name, 1280, 720) ==  true) {
 		gsm->Run();
 	} 
-	delete gsm;
+	delete gsm, gsm = nullptr;
 	
 	_CrtDumpMemoryLeaks();
 	exit(0);
