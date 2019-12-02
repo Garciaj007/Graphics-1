@@ -26,13 +26,13 @@ bool Scene2::OnCreate() {
 	reflectionShaderPtr = new Shader("reflectionVert.glsl", "reflectionFrag.glsl");
 	refractionShaderPtr = new Shader("refractionVert.glsl", "refractionFrag.glsl");
 	
-	if (!cubeMeshPtr || !reflectionShaderPtr || !refractionShaderPtr) {
+	if (!cubeMeshPtr || !sphereMeshPtr || !reflectionShaderPtr || !refractionShaderPtr) {
 		Debug::FatalError("Couldn't create game object assets", __FILE__, __LINE__);
 		return false;
 	}
 
 	cubeGOPtr = new GameObject(cubeMeshPtr, reflectionShaderPtr, nullptr);
-	sphereGOPtr = new GameObject(cubeMeshPtr, refractionShaderPtr, nullptr);
+	sphereGOPtr = new GameObject(sphereMeshPtr, refractionShaderPtr, nullptr);
 	if (!cubeGOPtr || !sphereGOPtr) {
 		Debug::FatalError("GameObject could not be created", __FILE__, __LINE__);
 		return false;
@@ -66,9 +66,9 @@ void Scene2::HandleEvents(const SDL_Event& sdlEvent)
 void Scene2::Update(const float deltaTime_) {
 	static auto rotation = 0.0f;
 	sphereGOPtr->Update(deltaTime_);
-	sphereGOPtr->setModelMatrix(MMath::scale(1.0f, 1.0f, 1.0f) * MMath::translate(2.0f, 0.5f, 0.0f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(-90, Vec3(1, 0, 0)));
+	sphereGOPtr->setModelMatrix(MMath::scale(1.5f, 1.5f, 1.5f) * MMath::translate(2.0f, 0.5f, 0.0f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(-90, Vec3(1, 0, 0)));
 	cubeGOPtr->Update(deltaTime_);
-	cubeGOPtr->setModelMatrix(MMath::scale(1.0f, 1.0f, 1.0f) * MMath::translate(-2.0f, -0.5f, 0.0f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(-90, Vec3(1, 0, 0)));
+	cubeGOPtr->setModelMatrix(MMath::scale(1.5f, 1.5f, 1.5f) * MMath::translate(-2.0f, -0.5f, 0.0f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(-90, Vec3(1, 0, 0)));
 	rotation += 0.5f;
 	offset.x += 1;
 
