@@ -134,6 +134,7 @@
     <ClCompile Include="Scene0.cpp" />
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Scene2.cpp" />
+    <ClCompile Include="Scene3.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -150,11 +151,13 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MMath.h" />
     <ClInclude Include="ObjLoader.h" />
+    <ClInclude Include="Perlin.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Scene0.h" />
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
+    <ClInclude Include="Scene3.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Sphere.h" />
@@ -177,6 +180,8 @@
     <None Include="skyboxVert.glsl" />
     <None Include="textureFrag.glsl" />
     <None Include="textureVert.glsl" />
+    <None Include="waterFrag.glsl" />
+    <None Include="waterVert.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Graphics Game Engine_Log.txt" />

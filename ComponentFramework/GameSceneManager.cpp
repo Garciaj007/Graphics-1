@@ -5,6 +5,7 @@
 #include "Scene0.h"
 #include "Scene1.h"
 #include "Scene2.h"
+#include "Scene3.h"
 
 int GameSceneManager::width = 0;
 int GameSceneManager::height = 0;
@@ -49,7 +50,7 @@ bool GameSceneManager::Init(std::string name_, int width_, int height_) {
 		return false;
 	}
 	
-	currentScene = BuildScene(SCENE2);
+	currentScene = BuildScene(SCENE3);
 	if (currentScene == nullptr) {
 		Debug::FatalError("Failed to initialize Opening Scene", __FILE__, __LINE__);
 		return false;
@@ -85,9 +86,9 @@ void GameSceneManager::HandleEvents() {
 	}
 }
 
-Scene* GameSceneManager::BuildScene(SCENE_NUMBER scene_) {
+Scene* GameSceneManager::BuildScene(const SCENE_NUMBER scene_) {
 	Scene* newScene = nullptr;
-	bool status; 
+	auto status = false; 
 	switch (scene_) {
 	case SCENE0:  
 		newScene = new Scene0();
@@ -101,13 +102,17 @@ Scene* GameSceneManager::BuildScene(SCENE_NUMBER scene_) {
 		newScene = new Scene2();
 		status = newScene->OnCreate();
 		break;
+	case SCENE3:
+		newScene = new Scene3();
+		status = newScene->OnCreate();
+		break;
 	default:
 		Debug::Error("Incorrect scene number assigned in the manager", __FILE__, __LINE__);
 		newScene = nullptr;
 		break;
 	}
-	if (status == false) {
-		if (newScene) delete newScene;
+	if (!status) {
+		delete newScene;
 		return nullptr;
 	}
 	return newScene;

@@ -11,7 +11,7 @@ uniform mat4 modelMatrix;
 
 void main()
 {
-	normal = vNormal.xyz;
-	position = (viewMatrix * modelMatrix * vVertex).xyz;
+	position = vec3(viewMatrix * modelMatrix * vVertex);
+	normal = vec3(viewMatrix * modelMatrix * vec4(vNormal.xyz, 0.0));
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vVertex;
 }

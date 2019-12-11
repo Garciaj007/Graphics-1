@@ -17,7 +17,9 @@ private:
 	enum SCENE_NUMBER {
 		SCENE0 = 0,
 		SCENE1,
-		SCENE2
+		SCENE2,
+		SCENE3,
+		SCENE4
 	};
 	class Scene* currentScene;
 	class Timer* timer;

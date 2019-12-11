@@ -31,7 +31,7 @@ bool Scene2::OnCreate() {
 		return false;
 	}
 
-	cubeGOPtr = new GameObject(cubeMeshPtr, reflectionShaderPtr, nullptr);
+	cubeGOPtr = new GameObject(sphereMeshPtr, reflectionShaderPtr, nullptr);
 	sphereGOPtr = new GameObject(sphereMeshPtr, refractionShaderPtr, nullptr);
 	if (!cubeGOPtr || !sphereGOPtr) {
 		Debug::FatalError("GameObject could not be created", __FILE__, __LINE__);
@@ -52,16 +52,7 @@ void Scene2::OnDestroy() {
 	if (skybox) delete skybox, skybox = nullptr;
 }
 
-void Scene2::HandleEvents(const SDL_Event& sdlEvent)
-{
-	//switch (sdlEvent.type)
-	//{
-	//case SDL_MOUSEMOTION:
-	//	input = { static_cast<float>(sdlEvent.motion.x), static_cast<float>(sdlEvent.motion.y) };
-	//	break;
-	//default:;
-	//}
-}
+void Scene2::HandleEvents(const SDL_Event& sdlEvent) { }
 
 void Scene2::Update(const float deltaTime_) {
 	static auto rotation = 0.0f;
@@ -71,21 +62,6 @@ void Scene2::Update(const float deltaTime_) {
 	cubeGOPtr->setModelMatrix(MMath::scale(1.5f, 1.5f, 1.5f) * MMath::translate(-2.0f, -0.5f, 0.0f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(-90, Vec3(1, 0, 0)));
 	rotation += 0.5f;
 	offset.x += 1;
-
-	/*if (firstGather)
-	{
-		previous = input;
-		current = input;
-		firstGather = false;
-	}
-	else
-	{
-		previous = current;
-		current = input;
-	}
-
-	offset.x = offset.x + (current.x - previous.x);
-	offset.y = offset.y + (current.y - previous.y);*/
 }
 
 void Scene2::Render() const {
