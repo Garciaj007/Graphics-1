@@ -66,8 +66,7 @@ void Scene3::Render() const {
 
 	const auto inputSpeed = 10.0f;
 
-	auto viewMatix = camera->getViewMatrix() * 
-		MMath::rotate(offset.x * static_cast<float>(DEGREES_TO_RADIANS) * inputSpeed, 0.f, 1.f, 0.f);
+	auto viewMatix = camera->getViewMatrix() * MMath::rotate(offset.x * static_cast<float>(DEGREES_TO_RADIANS) * inputSpeed, 0.f, 1.f, 0.f);
 
 	//Drawing Skybox
 	skybox->setViewMatrix(viewMatix);

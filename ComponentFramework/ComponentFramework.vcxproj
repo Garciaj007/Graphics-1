@@ -135,6 +135,7 @@
     <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Scene3.cpp" />
+    <ClCompile Include="Scene4.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
+    <ClInclude Include="Scene4.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Sphere.h" />
@@ -176,6 +178,8 @@
     <None Include="reflectionVert.glsl" />
     <None Include="refractionFrag.glsl" />
     <None Include="refractionVert.glsl" />
+    <None Include="sdfFrag.glsl" />
+    <None Include="sdfVert.glsl" />
     <None Include="skyboxFrag.glsl" />
     <None Include="skyboxVert.glsl" />
     <None Include="textureFrag.glsl" />
