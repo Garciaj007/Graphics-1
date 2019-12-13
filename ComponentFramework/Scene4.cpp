@@ -74,7 +74,9 @@ void Scene4::Render() const {
 	sdfGoPtr->getShader()->useShader();
 	glUniformMatrix4fv(sdfGoPtr->getShader()->getUniformID("projectionMatrix"), 1, GL_FALSE, camera->getProjectionMatrix());
 	glUniformMatrix4fv(sdfGoPtr->getShader()->getUniformID("viewMatrix"), 1, GL_FALSE, viewMatix);
-	glUniform2f(sdfGoPtr->getShader()->getUniformID("resolution"), GameSceneManager::width, GameSceneManager::height);
+	glUniform1f(sdfGoPtr->getShader()->getUniformID("width"), GameSceneManager::width);
+	glUniform1f(sdfGoPtr->getShader()->getUniformID("height"), GameSceneManager::height);
+	//glUniform2f(sdfGoPtr->getShader()->getUniformID("resolution"), GameSceneManager::width, GameSceneManager::height);
 	glUniform1f(sdfGoPtr->getShader()->getUniformID("time"), time);
 	sdfGoPtr->Render();
 	
