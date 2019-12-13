@@ -17,7 +17,7 @@ void main()
 {
 	vec3 offset = sin(time) * vVertex.xyz;
 	vec4 perlinVertex = texture(perlinNoise, offset);
-	vec4 newVertex = mix(vVertex, perlinVertex, 0.5);
+	vec4 newVertex = mix(vVertex, perlinVertex, 0.9);
 	position = vec3(viewMatrix * modelMatrix * newVertex);
 	normal = vec3(viewMatrix * modelMatrix * vec4(vNormal.xyz, 0.0));
 	texCoords = vTexCoords;

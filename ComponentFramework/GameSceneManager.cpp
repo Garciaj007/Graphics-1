@@ -51,7 +51,7 @@ bool GameSceneManager::Init(std::string name_, int width_, int height_) {
 		return false;
 	}
 	
-	currentScene = BuildScene(SCENE3);
+	currentScene = BuildScene(SCENE4);
 	if (currentScene == nullptr) {
 		Debug::FatalError("Failed to initialize Opening Scene", __FILE__, __LINE__);
 		return false;
@@ -108,7 +108,9 @@ Scene* GameSceneManager::BuildScene(const SCENE_NUMBER scene_) {
 		status = newScene->OnCreate();
 		break;
 	case SCENE4:
-		newScene = new Scene
+		newScene = new Scene4();
+		status = newScene->OnCreate();
+		break;
 	default:
 		Debug::Error("Incorrect scene number assigned in the manager", __FILE__, __LINE__);
 		newScene = nullptr;

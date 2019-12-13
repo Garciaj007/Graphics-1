@@ -13,5 +13,6 @@ void main()
 {
 	position = vec3(viewMatrix * modelMatrix * vVertex);
 	normal = vec3(viewMatrix * modelMatrix * vec4(vNormal.xyz, 0.0));
+	//normal = vec3(viewMatrix * modelMatrix * vNormal);
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * vVertex;
 }

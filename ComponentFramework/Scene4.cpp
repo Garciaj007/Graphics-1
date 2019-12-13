@@ -8,6 +8,7 @@
 #include "Shader.h"
 #include "MMath.h"
 #include "glm/gtc/type_ptr.hpp"
+#include "GameSceneManager.h"
 
 bool Scene4::OnCreate() {
 	camera = new Camera();
@@ -20,7 +21,7 @@ bool Scene4::OnCreate() {
 	if(!ObjLoader::loadOBJ("cube.obj")) return false;
 	cubeMeshPtr = new Mesh(GL_TRIANGLES, ObjLoader::vertices, ObjLoader::normals, ObjLoader::uvCoords);
 	
-	sdfShaderPtr = new Shader("waterVert.glsl", "waterFrag.glsl");
+	sdfShaderPtr = new Shader("sdfVert.glsl", "sdfFrag.glsl");
 	
 	if (!cubeMeshPtr || !sdfShaderPtr) {
 		Debug::FatalError("Couldn't create game object assets", __FILE__, __LINE__);
@@ -49,8 +50,9 @@ void Scene4::HandleEvents(const SDL_Event& sdlEvent) { }
 void Scene4::Update(const float deltaTime_) {
 	static auto rotation = 0.0f;
 	sdfGoPtr->Update(deltaTime_);
-	sdfGoPtr->setModelMatrix(MMath::scale(3.5f, 3.5f, 3.5f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(-90, Vec3(1, 0, 0)));
+	sdfGoPtr->setModelMatrix(MMath::scale(2.0f, 2.0f, 2.0f) * MMath::rotate(rotation, Vec3(0.0, 1.0f, 0.0)) * MMath::rotate(-90, Vec3(1, 0, 0)));
 	time += deltaTime_;
+	offset.x += 1.0f;
 }
 
 void Scene4::Render() const {
@@ -72,15 +74,8 @@ void Scene4::Render() const {
 	sdfGoPtr->getShader()->useShader();
 	glUniformMatrix4fv(sdfGoPtr->getShader()->getUniformID("projectionMatrix"), 1, GL_FALSE, camera->getProjectionMatrix());
 	glUniformMatrix4fv(sdfGoPtr->getShader()->getUniformID("viewMatrix"), 1, GL_FALSE, viewMatix);
+	glUniform2f(sdfGoPtr->getShader()->getUniformID("resolution"), GameSceneManager::width, GameSceneManager::height);
 	glUniform1f(sdfGoPtr->getShader()->getUniformID("time"), time);
-	glUniform3fv(sdfGoPtr->getShader()->getUniformID("light.direction"), 1, glm::value_ptr(glm::normalize(glm::vec3(1.0f))));
-	glUniform3fv(sdfGoPtr->getShader()->getUniformID("light.ambient"), 1, glm::value_ptr(glm::vec3(0.01f)));
-	glUniform3fv(sdfGoPtr->getShader()->getUniformID("light.diffuse"), 1, glm::value_ptr(glm::vec3(0.8f)));
-	glUniform3fv(sdfGoPtr->getShader()->getUniformID("light.specular"), 1, glm::value_ptr(glm::vec3(0.2f)));
-	glUniform1f(sdfGoPtr->getShader()->getUniformID("light.fresnelPower"), 1.0f);
-	glUniform1f(sdfGoPtr->getShader()->getUniformID("water.rrLerpAmt"), 0.5f);
-	glUniform1f(sdfGoPtr->getShader()->getUniformID("water.colorLerpAmt"), 0.2f);
-	glUniform4fv(sdfGoPtr->getShader()->getUniformID("water.color"), 1, glm::value_ptr(glm::vec4(9.f/255.f, 62.f/255.f, 73.f/255.f, 0.5f)));
 	sdfGoPtr->Render();
 	
 	glUseProgram(0);

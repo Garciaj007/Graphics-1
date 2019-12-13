@@ -823,8 +823,31 @@ float fOpTongue(float a, float b, float ra, float rb) {
 	return min(a, max(a - ra, abs(b) - rb));
 }
 
+// ====================== Custom Shader Code ===================
+
+#define MIN_DIST 0.0
+#define MAX_DIST 100.0
 #define STEPS 64
 #define STEP_SIZE 0.01
+#define EPSILON 0.0001
+
+float SphereSDF(vec3 samplePoint)
+{
+	return length(samplePoint) - 1;
+}
+
+float ShortestDistanceToSurface(vec3 pos, vec3 dir, float start, float end)
+{
+	float depth = start;
+	for(int i = 0; i < STEPS; i++)
+	{
+		float dist = SphereSDF(pos + depth * dir);
+		if(dist < EPSILON) return depth;
+		depth += dist;
+		if(depth >= end) return end;
+	}
+	return end;
+}
 
 vec2 obj_floor(in vec3 pos)
 {
@@ -849,13 +872,81 @@ vec3 floor_color(in vec3 pos)
 	}
 }
 
-vec3 prim_c()
+vec3 prim_c(in vec3 p)
 {
 	return vec3(0.6, 0.6, 0.8);
 }
 
+vec2 distance_to_obj(in vec3 p)
+{
+	return obj_floor(p);
+}
+
+//void main()
+//{
+//	fragColor = vec4(normalize(resolution).xy, 0, 0);
+//	return;
+//
+//	vec2 xy = (texCoords / resolution.xy) * 3.0 - vec2(1.0);
+//	xy.x *= resolution.x / resolution.y;
+//
+//	vec3 direction = normalize(-position);
+//
+//	float dist = ShortestDistanceToSurface(position, direction, MIN_DIST, MAX_DIST);
+//
+//	if(dist > MAX_DIST - EPSILON)
+//	{
+//		fragColor = vec4(0.0);
+//		return; 
+//	}
+//
+//	fragColor = vec4(1.0);
+//}
+
 void main () 
 {
-	fragColor = fSphere(position, normalize(normal));
+	vec2 vPos = -1.0 + 2.0 * texCoords;
+	vec3 vUp = vec3(0,0,1);
+
+	vec3 direction = normalize(position);
+	vec3 u = normalize(cross(vUp, direction));
+	vec3 v = cross(direction, u);
+	vec3 vCrossVector = position + direction;
+	vec3 srcCoord = vCrossVector + vPos.x * u * 0.8 + vPos.y * v * 0.8;
+	vec3 scp = normalize(srcCoord - position);
+
+	const vec3 e = vec3(0.02, 0, 0);
+	const float maxDepth = 100.0;
+	vec2 distance = vec2(0.02, 0.0);
+	vec3 c, p, N;
+
+	float f = 1.0;
+	for(int i = 0; i < 256; i++)
+	{
+		if((abs(distance.x) < .001) || (f > maxDepth)) break;
+
+		f += distance.x;
+		p = position + scp * f;
+		distance = distance_to_obj(p);
+	}
+
+	if(f < maxDepth)
+	{
+		if(distance.y == 0)
+			c = floor_color(p);
+		else
+			c = prim_c(p);
+
+		vec3 n = vec3(distance.x - distance_to_obj(p - e.xyy).x,
+					  distance.x - distance_to_obj(p - e.yxy).x,
+					  distance.x - distance_to_obj(p - e.yyx).x);
+		vec3 N = normalize(n);
+		float b = dot(N, normalize(position - p));
+		fragColor = vec4((b * c + pow(b, 16.0)) * (1.0 - f * .01), 1.0); 
+	} 
+	else
+	{
+		fragColor = vec4(0,0,0,1);
+	}
 }
 
