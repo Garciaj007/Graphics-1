@@ -136,6 +136,7 @@
     <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Scene3.cpp" />
     <ClCompile Include="Scene4.cpp" />
+    <ClCompile Include="Scene5.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="Scene4.h" />
+    <ClInclude Include="Scene5.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Sphere.h" />
@@ -172,6 +174,8 @@
   <ItemGroup>
     <None Include="blinn_phongFrag.glsl" />
     <None Include="blinn_phongVert.glsl" />
+    <None Include="customSDFFrag.glsl" />
+    <None Include="customSDFVert.glsl" />
     <None Include="phongFrag.glsl" />
     <None Include="phongVert.glsl" />
     <None Include="reflectionFrag.glsl" />

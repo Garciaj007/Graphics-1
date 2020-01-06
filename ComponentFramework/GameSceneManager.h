@@ -19,7 +19,8 @@ private:
 		SCENE1,
 		SCENE2,
 		SCENE3,
-		SCENE4
+		SCENE4,
+		SCENE5
 	};
 	class Scene* currentScene;
 	class Timer* timer;

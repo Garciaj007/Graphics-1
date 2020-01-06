@@ -72,6 +72,9 @@
     <ClCompile Include="Scene4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scene5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h">
@@ -146,6 +149,9 @@
     <ClInclude Include="Scene4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Scene5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="phongFrag.glsl">
@@ -194,6 +200,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sdfFrag.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="customSDFVert.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="customSDFFrag.glsl">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

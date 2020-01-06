@@ -844,6 +844,20 @@ vec2 SphereSDFv(in vec3 p)
 	return vec2(d, 1);
 }
 
+vec2 obj_union(in vec2 obj0, in vec2 obj1)
+{
+	if(obj0.x < obj1.x)
+		return obj0;
+	else
+		return obj1;
+}
+
+vec2 obj_sphere(in vec3 p)
+{
+	float d = length(p)-1.9;
+	return vec2(d, 1);
+}
+
 float ShortestDistanceToSurface(vec3 pos, vec3 dir, float start, float end)
 {
 	float depth = start;
@@ -895,7 +909,7 @@ vec2 SDFUnion(in vec2 obj0, in vec2 obj1)
 
 vec2 distance_to_obj(in vec3 p)
 {
-	return SDFUnion(obj_floor(p), SphereSDFv(p));
+	return obj_union(obj_floor(p), obj_sphere(p));
 }
 
 //void main()
@@ -965,7 +979,7 @@ void main ()
 	} 
 	else
 	{
-		fragColor = vec4(0,0,0,1);
+		fragColor = vec4(1,1,1,1);
 	}
 }
 
