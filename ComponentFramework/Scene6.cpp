@@ -26,7 +26,7 @@ bool Scene6::OnCreate() {
 	shaderList.push_back(new Shader("Shaders/Vert.glsl", "Shaders/linearMouseFrag.glsl"));
 	shaderList.push_back(new Shader("Shaders/Vert.glsl", "Shaders/2DRaymarchingFrag.glsl"));
 	shaderList.push_back(new Shader("Shaders/Vert.glsl", "Shaders/RaymarchingLakeFrag.glsl"));
-	shaderList.push_back(new Shader("Shaders/Vert.glsl", "Shaders/Frag.glsl"));
+	shaderList.push_back(new Shader("Shaders/Vert.glsl", "Shaders/SeaofDiamondsFrag.glsl"));
 	shaderList.push_back(new Shader("Shaders/Vert.glsl", "Shaders/Frag.glsl"));
 	shaderList.push_back(new Shader("Shaders/Vert.glsl", "Shaders/Frag.glsl"));
 	shaderList.push_back(new Shader("Shaders/Vert.glsl", "Shaders/Frag.glsl"));

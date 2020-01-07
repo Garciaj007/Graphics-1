@@ -190,6 +190,7 @@
     <None Include="sdfFrag.glsl" />
     <None Include="sdfVert.glsl" />
     <None Include="Shaders\Frag.glsl" />
+    <None Include="Shaders\SeaofDiamondsFrag.glsl" />
     <None Include="Shaders\skyboxFrag.glsl" />
     <None Include="Shaders\skyboxVert.glsl" />
     <None Include="Shaders\Vert.glsl" />

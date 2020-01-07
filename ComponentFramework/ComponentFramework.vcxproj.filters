@@ -219,6 +219,7 @@
     <None Include="Shaders\linearMouseFrag.glsl" />
     <None Include="Shaders\2DRaymarchingFrag.glsl" />
     <None Include="Shaders\RaymarchingLakeFrag.glsl" />
+    <None Include="Shaders\SeaofDiamondsFrag.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Graphics Game Engine_Log.txt">
