@@ -75,6 +75,9 @@
     <ClCompile Include="Scene5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Scene6.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Debug.h">
@@ -152,48 +155,15 @@
     <ClInclude Include="Scene5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Scene6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="phongFrag.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="phongVert.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="textureFrag.glsl">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="textureVert.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="blinn_phongVert.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="blinn_phongFrag.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="skyboxFrag.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="skyboxVert.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="reflectionVert.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="reflectionFrag.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="refractionVert.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="refractionFrag.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="waterVert.glsl">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="waterFrag.glsl">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="sdfVert.glsl">
@@ -202,12 +172,53 @@
     <None Include="sdfFrag.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="customSDFVert.glsl">
+    <None Include="Shaders\Frag.glsl" />
+    <None Include="Shaders\customSDFVert.glsl">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="customSDFFrag.glsl">
+    <None Include="Shaders\customSDFFrag.glsl">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Shaders\blinn_phongVert.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\blinn_phongFrag.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\waterVert.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\waterFrag.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\skyboxVert.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\skyboxFrag.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\refractionVert.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\refractionFrag.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\reflectionVert.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\reflectionFrag.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\phongVert.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\phongFrag.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\Vert.glsl" />
+    <None Include="Shaders\linearMouseFrag.glsl" />
+    <None Include="Shaders\2DRaymarchingFrag.glsl" />
+    <None Include="Shaders\RaymarchingLakeFrag.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Graphics Game Engine_Log.txt">

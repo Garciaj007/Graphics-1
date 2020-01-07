@@ -15,6 +15,13 @@ GameObject::GameObject(Mesh *mesh_, Shader *shader_, Texture *texture_):
 
 GameObject::~GameObject() {}
 
+void GameObject::setShader(Shader* shader_)
+{
+	shader = shader_;
+	modelMatrixID = shader->getUniformID("modelMatrix");
+	normalMatrixID = shader->getUniformID("normalMatrix");
+}
+
 void GameObject::Update(float deltaTime_) {}
 
 void GameObject::Render() const {

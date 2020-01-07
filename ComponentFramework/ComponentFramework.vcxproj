@@ -137,6 +137,7 @@
     <ClCompile Include="Scene3.cpp" />
     <ClCompile Include="Scene4.cpp" />
     <ClCompile Include="Scene5.cpp" />
+    <ClCompile Include="Scene6.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="Scene3.h" />
     <ClInclude Include="Scene4.h" />
     <ClInclude Include="Scene5.h" />
+    <ClInclude Include="Scene6.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Sphere.h" />
@@ -172,24 +174,29 @@
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="blinn_phongFrag.glsl" />
-    <None Include="blinn_phongVert.glsl" />
-    <None Include="customSDFFrag.glsl" />
-    <None Include="customSDFVert.glsl" />
-    <None Include="phongFrag.glsl" />
-    <None Include="phongVert.glsl" />
-    <None Include="reflectionFrag.glsl" />
-    <None Include="reflectionVert.glsl" />
-    <None Include="refractionFrag.glsl" />
-    <None Include="refractionVert.glsl" />
+    <None Include="Shaders\2DRaymarchingFrag.glsl" />
+    <None Include="Shaders\blinn_phongFrag.glsl" />
+    <None Include="Shaders\blinn_phongVert.glsl" />
+    <None Include="Shaders\customSDFFrag.glsl" />
+    <None Include="Shaders\customSDFVert.glsl" />
+    <None Include="Shaders\linearMouseFrag.glsl" />
+    <None Include="Shaders\phongFrag.glsl" />
+    <None Include="Shaders\phongVert.glsl" />
+    <None Include="Shaders\RaymarchingLakeFrag.glsl" />
+    <None Include="Shaders\reflectionFrag.glsl" />
+    <None Include="Shaders\reflectionVert.glsl" />
+    <None Include="Shaders\refractionFrag.glsl" />
+    <None Include="Shaders\refractionVert.glsl" />
     <None Include="sdfFrag.glsl" />
     <None Include="sdfVert.glsl" />
-    <None Include="skyboxFrag.glsl" />
-    <None Include="skyboxVert.glsl" />
+    <None Include="Shaders\Frag.glsl" />
+    <None Include="Shaders\skyboxFrag.glsl" />
+    <None Include="Shaders\skyboxVert.glsl" />
+    <None Include="Shaders\Vert.glsl" />
     <None Include="textureFrag.glsl" />
     <None Include="textureVert.glsl" />
-    <None Include="waterFrag.glsl" />
-    <None Include="waterVert.glsl" />
+    <None Include="Shaders\waterFrag.glsl" />
+    <None Include="Shaders\waterVert.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Graphics Game Engine_Log.txt" />

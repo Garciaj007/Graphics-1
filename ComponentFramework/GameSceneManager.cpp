@@ -8,6 +8,7 @@
 #include "Scene3.h"
 #include "Scene4.h"
 #include "Scene5.h"
+#include "Scene6.h"
 
 int GameSceneManager::width = 0;
 int GameSceneManager::height = 0;
@@ -52,7 +53,7 @@ bool GameSceneManager::Init(std::string name_, int width_, int height_) {
 		return false;
 	}
 	
-	currentScene = BuildScene(SCENE5);
+	currentScene = BuildScene(SCENE6);
 	if (currentScene == nullptr) {
 		Debug::FatalError("Failed to initialize Opening Scene", __FILE__, __LINE__);
 		return false;
@@ -114,6 +115,10 @@ Scene* GameSceneManager::BuildScene(const SCENE_NUMBER scene_) {
 		break;
 	case SCENE5:
 		newScene = new Scene5();
+		status = newScene->OnCreate();
+		break;
+	case SCENE6:
+		newScene = new Scene6();
 		status = newScene->OnCreate();
 		break;
 	default:
