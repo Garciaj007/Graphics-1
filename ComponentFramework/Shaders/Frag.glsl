@@ -161,6 +161,7 @@ vec3 transform(in vec3 p, in mat4 t)
 float map(vec3 p)
 {
 	vec3 rep = SDFPreOpRepeitionClamp(p, sin(time) * 0.5 + 2, vec3(10.0, 10.0, 10.0));
+	rep = SDFPreOpTwist(rep, sin(time) * 2.0);
 	float diamonds = SDFOctahedron(rep, cos(time / 2) * 0.25 + 0.5);
 	float wave = SDFWaves(p, vec2(0.5, 1.0));
 	return SDFOpSmoothIntersection(diamonds, wave, 0.1);
