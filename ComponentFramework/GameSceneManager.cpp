@@ -53,7 +53,7 @@ bool GameSceneManager::Init(std::string name_, int width_, int height_) {
 		return false;
 	}
 	
-	currentScene = BuildScene(SCENE6);
+	currentScene = BuildScene(SCENE3);
 	if (currentScene == nullptr) {
 		Debug::FatalError("Failed to initialize Opening Scene", __FILE__, __LINE__);
 		return false;

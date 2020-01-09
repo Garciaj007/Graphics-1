@@ -10,14 +10,18 @@ out vec2 texCoords;
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
+uniform mat3 normalMatrix;
 uniform float time;
 uniform sampler3D perlinNoise;
+uniform float divisionFactor = 0.0;
+
+vec3 offset;
 
 void main()
 {
-	vec3 offset = sin(time) * vVertex.xyz;
+	offset = (time * vVertex.xyz, time / vVertex.xyz, time * vVertex.xyz);
 	vec4 perlinVertex = texture(perlinNoise, offset);
-	vec4 newVertex = mix(vVertex, perlinVertex, 0.9);
+	vec4 newVertex = vVertex + mix(vVertex, perlinVertex, 0.9);
 	position = vec3(viewMatrix * modelMatrix * newVertex);
 	normal = vec3(viewMatrix * modelMatrix * vec4(vNormal.xyz, 0.0));
 	texCoords = vTexCoords;

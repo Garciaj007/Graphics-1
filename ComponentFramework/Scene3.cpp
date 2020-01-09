@@ -22,7 +22,7 @@ bool Scene3::OnCreate() {
 	if(!ObjLoader::loadOBJ("sphere.obj")) return false;
 	sphereMeshPtr = new Mesh(GL_TRIANGLES, ObjLoader::vertices, ObjLoader::normals, ObjLoader::uvCoords);
 	
-	waterShaderPtr = new Shader("waterVert.glsl", "waterFrag.glsl");
+	waterShaderPtr = new Shader("Shaders/waterVert.glsl", "Shaders/waterFrag.glsl");
 	
 	if (!sphereMeshPtr || !waterShaderPtr) {
 		Debug::FatalError("Couldn't create game object assets", __FILE__, __LINE__);
