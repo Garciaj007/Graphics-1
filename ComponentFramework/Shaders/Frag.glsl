@@ -160,11 +160,13 @@ vec3 transform(in vec3 p, in mat4 t)
 
 float map(vec3 p)
 {
-	vec3 rep = SDFPreOpRepeitionClamp(p, sin(time) * 0.5 + 2, vec3(10.0, 10.0, 10.0));
-	rep = SDFPreOpTwist(rep, sin(time) * 2.0);
-	float diamonds = SDFOctahedron(rep, cos(time / 2) * 0.25 + 0.5);
-	float wave = SDFWaves(p, vec2(0.5, 1.0));
-	return SDFOpSmoothIntersection(diamonds, wave, 0.1);
+	vec2 mouseN = mouse / resolution;
+	mouseN -= 0.5;
+	vec3 rep = SDFPreOpRepetition(p, vec3(2.0));
+	vec3 mouseP = vec3(rep.xy - mouseN * 4.0, p.z);
+	float diamond = SDFOctahedron(rep, 1.0);
+	float triangle = SDFTriPrism(mouseP, vec2(0.75));
+	return SDFOpSmoothIntersection(diamond, triangle, 0.1);
 }
 
 float raymarch(vec3 origin, vec3 direction)
@@ -194,12 +196,11 @@ void main ()
 {
 	vec2 coord = 2.0 * gl_FragCoord.xy / resolution - vec2(1.0);
 	coord.y *= resolution.y / resolution.x;
-	vec2 mouseN = mouse / resolution;
 
 	vec3 light = vec3(sin(time) * 5.0, 1.0, -2.0 + cos(time) * 4.0);
 
 	vec3 direction = normalize(vec3(coord, 1.0));
-	vec3 origin = vec3(0.0, 0.5, -5.0);
+	vec3 origin = vec3(0.0, 0.5, -10.0);
 	float dist = raymarch(origin, direction);
 
 	vec3 p = origin + dist * direction;

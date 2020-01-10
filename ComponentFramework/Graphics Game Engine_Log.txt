@@ -1,3 +1,3 @@
-[INFO]: Starting the GameSceneManager in file: C:\Development\C++\Graphics-1\ComponentFramework\Main.cpp on line: 13
-[INFO]: OpenGL version: 4.5.0 - Build 25.20.100.6577 in file: C:\Development\C++\Graphics-1\ComponentFramework\Window.cpp on line: 47
-[INFO]: Deleting the GameSceneManager in file: C:\Development\C++\Graphics-1\ComponentFramework\GameSceneManager.cpp on line: 36
+[INFO]: Starting the GameSceneManager in file: E:\Development\C++\Graphics-1\ComponentFramework\Main.cpp on line: 13
+[INFO]: OpenGL version: 4.6.0 NVIDIA 441.08 in file: E:\Development\C++\Graphics-1\ComponentFramework\Window.cpp on line: 47
+[INFO]: Deleting the GameSceneManager in file: E:\Development\C++\Graphics-1\ComponentFramework\GameSceneManager.cpp on line: 36
